@@ -161,7 +161,7 @@ export const data = [
         Value: '57/100'
       }
     ],
-    Metascore: '57',
+    Metascore: '50',
     imdbRating: '7.0',
     imdbVotes: '686,304',
     imdbID: 'tt1228705',
