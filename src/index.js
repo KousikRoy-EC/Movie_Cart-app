@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom';
 import {createStore} from "redux"
 import './index.css';
 import App from './components/App';
-import movies from "./Reducers"
+import rootstate from "./Reducers"
 
-const Store =createStore(movies)
+const Store =createStore(rootstate)
 // console.log("store",Store);
 // console.log("Beforestate",Store.getState());
 

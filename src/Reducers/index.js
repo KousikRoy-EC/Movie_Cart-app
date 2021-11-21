@@ -1,5 +1,5 @@
 //we cannot change the state directly we will always return new state in reducer which is a pure function
-
+import {combineReducers} from 'redux'
 import { Add_Movies } from "../actions";
 import { Add_Favourite, Rem_Fav, setshow } from "../actions";
 const mystate = {
@@ -8,7 +8,7 @@ const mystate = {
   setSHOW: false,
 };
 
-export default function movies(state = mystate, action) {
+export function movies(state = mystate, action) {
   if (action.type === Add_Movies) {
     return {
       ...state,
@@ -39,3 +39,24 @@ export default function movies(state = mystate, action) {
   }
   return state;
 }
+
+const intialsearchstate = { result: {} };
+
+export function search(state = intialsearchstate, action) {
+  return state;
+}
+
+// const rootState = {
+//   movies: mystate,
+//   search: intialsearchstate,
+// };
+
+// export default function rootstate(state = rootState, action) {
+//   return {
+//     movies: movies(state.movies, action),
+//     search: search(state.search, action),
+//   };
+// }
+
+
+export default combineReducers({movies , search });
