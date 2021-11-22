@@ -1,26 +1,29 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import {createStore} from "redux"
-import './index.css';
-import App from './components/App';
-import rootstate from "./Reducers"
+import React from "react";
+import ReactDOM from "react-dom";
+import { createStore, applyMiddleware } from "redux";
+import "./index.css";
+import App from "./components/App";
+import rootstate from "./Reducers";
+import thunk from "redux-thunk";
 
-const Store =createStore(rootstate)
-// console.log("store",Store);
-// console.log("Beforestate",Store.getState());
+// const logger=function ({dispatch , getstate}) {
+//   return function (next) {
+//     return function (action) {
+//       console.log("Action Type ", action.type);
+//       next(action);
+//     }
+//   }
+// }
 
-// Store.dispatch({
-//   type:"Add_Movies",
-//   movies : ["Soryavansham","Charusat","Aman Biography"]
-// })
+// using currying
 
-// console.log("AfterState",Store.getState());
+const logger =
+  ({ dispatch, getstate }) =>
+  (next) =>
+  (action) => {
+    next(action);
+  };
 
-ReactDOM.render(
-  
-    <App store={Store} />
-  ,
-  document.getElementById('root')
-);
+const Store = createStore(rootstate, applyMiddleware(logger, thunk));
 
-
+ReactDOM.render(<App store={Store} />, document.getElementById("root"));

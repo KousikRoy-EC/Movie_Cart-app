@@ -34,27 +34,30 @@ class App extends React.Component {
     return false;
   };
 
-
   setstate = (val) => {
     this.props.store.dispatch(setSHOW(val));
-  }
+  };
 
   render() {
-    const { movies } = this.props.store.getState();
+    const { movies, search } = this.props.store.getState();
     const { list, favourite, setSHOW } = movies;
     const display = setSHOW ? favourite : list;
 
-
-
     return (
       <div className="App">
-        <Navbar />
+        <Navbar dispatch={this.props.store.dispatch} result={search} />
         <div className="main">
           <div className="tabs">
-            <div className={`tab  ${setSHOW ? '' : 'active-tabs'}`} onClick={() => this.setstate(false)}>
+            <div
+              className={`tab  ${setSHOW ? "" : "active-tabs"}`}
+              onClick={() => this.setstate(false)}
+            >
               Movies
             </div>
-            <div className={`tab  ${setSHOW ? 'active-tabs' : ''}`} onClick={() => this.setstate(true)}>
+            <div
+              className={`tab  ${setSHOW ? "active-tabs" : ""}`}
+              onClick={() => this.setstate(true)}
+            >
               Fav Movies
             </div>
           </div>
